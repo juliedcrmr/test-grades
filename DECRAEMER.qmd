@@ -109,4 +109,18 @@ philosophy_grades <- grades %>%
   )
 knitr::kable(head(philosophy_grades, 10))
 ```
+### Question 10
+```{r}
+grades_distribution <- philosophy_grades %>%
+  count(num_grades, name = "num_students")
+
+ggplot(grades_distribution, aes(x = num_grades, y = num_students)) +
+  geom_col() +
+  labs(
+    x = "Number of Grades",
+    y = "Number of Students",
+    title = "Distribution of the Number of Grades in PHPE"
+  ) +
+  theme_minimal()
+```
 
