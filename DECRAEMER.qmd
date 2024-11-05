@@ -29,3 +29,14 @@ grades %>%
   distinct(id)
 ```
 There are 749 students observed in this data set.
+
+### Question 4
+```{r}
+students <- grades %>%
+  select(id, group) %>%
+  distinct()
+```
+Here is a sample of the students data frame:
+```{r}
+head(students)
+```
