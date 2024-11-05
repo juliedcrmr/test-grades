@@ -98,4 +98,15 @@ student_grade_stats <- grades %>%
   )
 knitr::kable(head(student_grade_stats, 10), caption = "Grade Statistics per Student (Sample)")
 ```
+### Question 9
+```{r}
+philosophy_grades <- grades %>%
+  filter(course == "Post-Human Philosophy and Ethics") %>%
+  group_by(id, group) %>%
+  summarise(
+    num_grades = n(),
+    .groups = "drop"
+  )
+knitr::kable(head(philosophy_grades, 10))
+```
 
