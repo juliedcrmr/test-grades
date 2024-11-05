@@ -40,3 +40,15 @@ Here is a sample of the students data frame:
 ```{r}
 head(students)
 ```
+
+### Question 5
+```{r}
+group_counts <- students %>%
+  count(group)
+
+ggplot(group_counts, aes(x = factor(group), y = n)) +
+  geom_bar(stat = "identity") +
+  labs(x = "Group", y = "Number of Students", title = "Number of Students per Group") +
+  theme_minimal()
+```
+
