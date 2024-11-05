@@ -167,4 +167,20 @@ ggplot(average_grades_plot, aes(x = `Post-Human Philosophy and Ethics`, y = `Art
   ) +
   theme_minimal()
 ```
+### Question 14
+```{r}
+colnames(average_grades)
+```
+```{r}
+wide_grades <- average_grades %>%
+  pivot_wider(names_from = course, values_from = avg_grade)
+
+correlations <- wide_grades %>%
+  group_by(group) %>%
+  summarize(
+    correlation = cor(`Artificial Intelligence and Machine Learning`, `Virtual Reality and Augmented Reality`, use = "complete.obs")
+  )
+
+print(correlations)
+```
 
