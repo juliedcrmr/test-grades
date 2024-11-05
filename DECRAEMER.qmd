@@ -23,4 +23,9 @@ nrow(grades)
 ```
 The data set contains 48090 grades.
 
-
+### Question 3
+```{r}
+grades %>%
+  distinct(id)
+```
+There are 749 students observed in this data set.
