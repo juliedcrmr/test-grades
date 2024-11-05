@@ -223,3 +223,43 @@ ggplot(final_grades, aes(x = factor(group), y = final_grade)) +
 ```
 The distribution of final grades varies across groups, with some groups showing higher median grades and less variability, indicating potential differences in overall performance and consistency among groups.
 
+### Question 18
+```{r}
+course_averages <- grades %>%
+  group_by(id, group, course) %>%
+  summarise(average_grade = mean(grade), .groups = "drop")
+
+course_pass <- course_averages %>%
+  group_by(id, group) %>%
+  summarise(all_courses_above_5 = all(average_grade >= 5), .groups = "drop")
+
+semester_averages <- grades %>%
+  group_by(id, group, semester) %>%
+  summarise(semester_avg = mean(grade), .groups = "drop")
+
+semester_pass <- semester_averages %>%
+  group_by(id, group) %>%
+  summarise(all_semesters_above_10 = all(semester_avg >= 10), .groups = "drop")
+
+final_grades <- course_averages %>%
+  group_by(id, group) %>%
+  summarise(final_grade = mean(average_grade), .groups = "drop")
+
+pass_data <- final_grades %>%
+  left_join(course_pass, by = c("id", "group")) %>%
+  left_join(semester_pass, by = c("id", "group")) %>%
+  mutate(pass = all_courses_above_5 & all_semesters_above_10) %>%
+  select(id, group, final_grade, pass)
+
+head(pass_data)
+```
+### Question 19
+```{r}
+non_passing_students <- pass_data %>%
+  filter(pass == FALSE & final_grade >= 10)
+
+non_passing_count <- nrow(non_passing_students)
+
+non_passing_count
+```
+
