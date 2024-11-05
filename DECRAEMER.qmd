@@ -16,4 +16,11 @@ library(tidyr)
 ```{r}
 grades <- vroom(here("grades.csv"))
 ```
+## Simple analyses
+### Question 2
+```{r}
+nrow(grades)
+```
+The data set contains 48090 grades.
+
 
