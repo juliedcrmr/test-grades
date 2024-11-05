@@ -66,4 +66,13 @@ ggplot(average_grades, aes(x = factor(group), y = average_grade)) +
   labs(x = "Group", y = "Average Grade", title = "Average Grade in DCST by Group") +
   theme_minimal()
 ```
-
+### Question 7
+```{r}
+ggplot(grades, aes(x = grade, fill = factor(semester))) +
+  geom_density(alpha = 0.5) +
+  labs(x = "Grade", y = "Density", 
+       title = "Distribution of Grades by Semester",
+       fill = "Semester") +
+  theme_minimal()
+```
+The grade distributions for the two semesters show notable differences. Semester 1 has a more concentrated distribution around scores between 10 and 12, while Semester 2 is more spread out and reaches higher scores near 20. This suggests that students may have achieved more varied and potentially higher results in Semester 2, indicating possible differences in course difficulty or evaluation standards across semesters.
