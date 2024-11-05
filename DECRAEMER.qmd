@@ -52,3 +52,18 @@ ggplot(group_counts, aes(x = factor(group), y = n)) +
   theme_minimal()
 ```
 
+### Question 6
+```{r}
+darknet_grades <- grades %>%
+  filter(course == "Darknet Culture and Subversive Technologies")
+
+average_grades <- darknet_grades %>%
+  group_by(group) %>%
+  summarise(average_grade = mean(grade, na.rm = TRUE))
+
+ggplot(average_grades, aes(x = factor(group), y = average_grade)) +
+  geom_col() +
+  labs(x = "Group", y = "Average Grade", title = "Average Grade in DCST by Group") +
+  theme_minimal()
+```
+
