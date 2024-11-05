@@ -123,4 +123,15 @@ ggplot(grades_distribution, aes(x = num_grades, y = num_students)) +
   ) +
   theme_minimal()
 ```
-
+### Question 11
+```{r}
+ggplot(grades_per_student, aes(x = factor(group), y = num_grades)) +
+  geom_boxplot(fill = "skyblue", color = "darkblue") +
+  labs(
+    x = "Group",
+    y = "Number of Grades",
+    title = "Distribution of Number of Grades per Student in PHPE by Group"
+  ) +
+  theme_minimal()
+```
+The median number of grades is fairly consistent across most groups, so students across different groups receive a similar number of grades in Post-Human Philosophy and Ethics. There is some variation in the spread of grades across groups. Finally, groups such as 1, 3, and 8 contains outliers that represent students who received fewer grades compared to their peers in the same group. This suggests that the number of grades per student in Post-Human Philosophy and Ethics does not depend on the group.
