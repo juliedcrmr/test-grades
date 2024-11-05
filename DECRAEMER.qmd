@@ -151,3 +151,20 @@ extract <- wide_grades %>%
 
 print(extract)
 ```
+
+### Question 13
+```{r}
+average_grades_plot <- wide_grades %>%
+  select(id, group, `Artificial Intelligence and Machine Learning`, `Post-Human Philosophy and Ethics`)
+
+ggplot(average_grades_plot, aes(x = `Post-Human Philosophy and Ethics`, y = `Artificial Intelligence and Machine Learning`)) +
+  geom_point(color = "darkgrey", size = 2, alpha = 0.4) + 
+  geom_smooth(method = "lm", formula = y ~ x, color = "steelblue", se = FALSE, linetype = "dashed") + 
+  labs(
+    x = "Average Grade in Post-Human Philosophy and Ethics",
+    y = "Average Grade in AIML",
+    title = "Comparison of Average Grades in Two Courses"
+  ) +
+  theme_minimal()
+```
+
