@@ -135,3 +135,19 @@ ggplot(grades_per_student, aes(x = factor(group), y = num_grades)) +
   theme_minimal()
 ```
 The median number of grades is fairly consistent across most groups, so students across different groups receive a similar number of grades in Post-Human Philosophy and Ethics. There is some variation in the spread of grades across groups. Finally, groups such as 1, 3, and 8 contains outliers that represent students who received fewer grades compared to their peers in the same group. This suggests that the number of grades per student in Post-Human Philosophy and Ethics does not depend on the group.
+
+## Grade analysis
+### Question 12
+```{r}
+average_grades <- grades %>%
+  group_by(id, group, course) %>%
+  summarise(avg_grade = mean(grade), .groups = "drop")
+
+wide_grades <- average_grades %>%
+  pivot_wider(names_from = course, values_from = avg_grade)
+
+extract <- wide_grades %>%
+  select(id, group, `Artificial Intelligence and Machine Learning`, `Bioengineering and Genetic Modification`)
+
+print(extract)
+```
