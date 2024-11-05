@@ -204,3 +204,13 @@ ggplot(target_data, aes(x = `Virtual Reality and Augmented Reality`, y = `Artifi
   theme_minimal()
 ```
 
+### Question 16
+```{r}
+final_grades <- average_grades %>%
+  group_by(id, group) %>%
+  summarise(final_grade = mean(avg_grade), .groups = "drop") %>%
+  arrange(desc(final_grade))
+```
+```{r}
+head(final_grades, 5)
+```
