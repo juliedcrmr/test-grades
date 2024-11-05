@@ -76,3 +76,26 @@ ggplot(grades, aes(x = grade, fill = factor(semester))) +
   theme_minimal()
 ```
 The grade distributions for the two semesters show notable differences. Semester 1 has a more concentrated distribution around scores between 10 and 12, while Semester 2 is more spread out and reaches higher scores near 20. This suggests that students may have achieved more varied and potentially higher results in Semester 2, indicating possible differences in course difficulty or evaluation standards across semesters.
+
+## Attendance analysis
+### Question 8
+```{r}
+grades_per_student <- grades %>%
+  group_by(id, group) %>%
+  summarise(num_grades = n(), .groups = "drop")
+
+head(grades_per_student)
+```
+```{r}
+student_grade_stats <- grades %>%
+  group_by(id, group) %>%
+  summarise(
+    min_grade = min(grade),
+    max_grade = max(grade),
+    avg_grade = mean(grade),
+    median_grade = median(grade),
+    .groups = "drop"  # This drops the grouping after summarising
+  )
+knitr::kable(head(student_grade_stats, 10), caption = "Grade Statistics per Student (Sample)")
+```
+
