@@ -184,3 +184,23 @@ correlations <- wide_grades %>%
 print(correlations)
 ```
 
+### Question 15
+```{r}
+target_group <- correlations %>%
+  slice_max(abs(correlation), n = 1) %>%
+  pull(group)
+
+target_data <- wide_grades %>%
+  filter(group == target_group)
+
+ggplot(target_data, aes(x = `Virtual Reality and Augmented Reality`, y = `Artificial Intelligence and Machine Learning`)) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "#E6E6FA") +
+  labs(
+    x = "Average Grades in Virtual Reality and Augmented Reality",
+    y = "Average Grades in AI and ML",
+    title = paste("Relationship Between AI & ML and VR & AR for Group", target_group)
+  ) +
+  theme_minimal()
+```
+
